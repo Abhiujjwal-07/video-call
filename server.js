@@ -23,6 +23,9 @@ io.on("connection", (socket) => {
         socket.to(roomId).emit("user-connected", userId);
         console.log(userId);
         console.log(roomId);
+        socket.on("disconnect", () => {
+            socket.to(roomId).emit("user-disconnected", userId);
+        });
     });
 });
 server.listen(3400);
